@@ -1,0 +1,110 @@
+/* Center the container */
+.container {
+    width:600px;
+    height: 525px;
+    border: 2px solid black;
+    
+  }
+  
+  /* Container for status badges and dots */
+  .status-badges {
+    display: flex;
+    align-items: center;
+    gap: 20px; /* Space between badges */
+  }
+  
+  /* Style for each badge and dot */
+  .badge-status {
+    display: flex;
+    align-items: center;
+  }
+  
+  .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px; /* Space between dot and text */
+  }
+  
+  /* Colors for dots */
+  .bg-primary {
+    background-color: #007bff !important;
+  }
+  
+  .bg-secondary {
+    background-color: #6c757d !important;
+  }
+  
+  /* Grid and slot styles */
+  .slots-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr); /* 7 columns */
+    gap: 10px;
+    max-width: 100%; /* Ensure it does not exceed the container width */
+    width: 100%;
+  }
+  
+  .slot {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    height: 68px;
+    width: 73px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: relative;
+  }
+  
+  .slot:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .slot.booked {
+    background-color: #007bff; /* Blue color for reserved slots */
+    color: #fff;
+    border-color: #0056b3;
+  }
+  
+  
+  
+  .slot.selected {
+    border-color: #ffcc00; /* Highlight selected slot */
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5); /* Glow effect for selected slot */
+  }
+  
+  .slot .form-control {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  /* Style for the booking message block */
+  .alert {
+    display: block;
+    margin: 0 auto;
+    padding: 10px;
+    max-width: 300px;
+  }
+
+  .modal.show {
+    display: block;
+  }
+  
+  .modal-dialog {
+    max-width: 500px;
+  }
+  
+  .modal-body {
+    padding: 20px;
+  }
+  

@@ -1,0 +1,130 @@
+/* home.component.css */
+:host {
+    display: block;
+    height: 100%;
+    margin: 0;
+    overflow: hidden; /* Prevent scrollbars */
+  }
+  
+  #sidebar {
+    width: 60px; /* Collapsed width */
+    height: 100vh; /* Full viewport height */
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #343a40; /* Sidebar background color */
+    color: #fff;
+    transition: width 0.3s; /* Smooth transition for width */
+    display: flex; /* Use flexbox for layout */
+    flex-direction: column; /* Arrange items in a column */
+    align-items: center; /* Center items horizontally */
+    overflow: hidden; /* Hide overflow */
+  }
+  
+  #sidebar:hover {
+    width: 200px;
+    opacity: 0.9; /* Expanded width */
+  }
+  
+  #sidebar .notification {
+    margin-top: 20px; /* Space above notification icon */
+    position: relative; /* For positioning notification badge */
+    font-size: 1rem; /* Icon size */
+    display: flex; /* Use flexbox for the icon and text */
+    align-items: center; /* Center items vertically */
+    transition: width 0.3s; /* Smooth transition for width */
+  }
+  
+  #sidebar .notification i {
+    transition: opacity 0.3s; /* Smooth transition for icon visibility */
+  }
+  
+  #sidebar .notification .notification-text {
+    margin-left: 10px; /* Space between icon and text */
+    opacity: 0; /* Hide text by default */
+    transition: opacity 0.3s; /* Smooth transition for text visibility */
+    white-space: nowrap; /* Prevent text wrapping */
+    display: none; /* Hide text by default */
+  }
+  
+  #sidebar:hover .notification i {
+    opacity: 1; /* Show icon when sidebar is hovered */
+  }
+  
+  #sidebar:hover .notification .notification-text {
+    opacity: 1; /* Show text when sidebar is hovered */
+    display: inline; /* Show text when sidebar is hovered */
+  }
+  
+  #sidebar .nav {
+    display: flex; /* Use flexbox for the list items */
+    flex-direction: column; /* Arrange items in a column */
+    align-items: center; /* Center items horizontally */
+    width: 100%; /* Full width to align items properly */
+  }
+  
+  #sidebar .nav-item {
+    width: 100%; /* Full width for each nav item */
+  }
+  
+  #sidebar .nav-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    width: 100%; /* Full width of the sidebar */
+    text-align: center; /* Center text horizontally */
+    position: relative; /* For positioning text */
+    transition: padding 0.3s; /* Smooth transition for padding */
+  }
+  
+  #sidebar .nav-link i {
+    font-size: 1rem; /* Adjust icon size */
+    transition: opacity 0.3s; /* Smooth transition for icon visibility */
+  }
+  
+  #sidebar .nav-text {
+    white-space: nowrap; /* Prevent text wrapping */
+    overflow: hidden; /* Hide overflow text */
+    text-overflow: ellipsis; /* Add ellipsis for text overflow */
+    opacity: 0; /* Hide text by default */
+    transition: opacity 0.3s; /* Smooth transition for text visibility */
+    margin-left: 10px; /* Space between icon and text */
+  }
+  
+  #sidebar:hover .nav-text {
+    opacity: 1; /* Show text when sidebar is hovered */
+  }
+  
+  #sidebar:hover .nav-link i {
+    opacity: 0; /* Hide icon when sidebar is hovered */
+  }
+  
+  #sidebar:hover .nav-link {
+    padding-left: 20px; /* Add space when expanded to align text */
+    padding-right: 20px; /* Add space when expanded to align text */
+  }
+  
+  .content-wrapper {
+    margin-left: 40px; /* Space for the collapsed sidebar */
+    height: 100vh; /* Full viewport height */
+    transition: margin-left 0.3s; /* Smooth transition for margin */
+  }
+  
+  #sidebar:hover ~ .content-wrapper {
+    margin-left: 200px; /* Adjust space for the expanded sidebar */
+  }
+  
+  .container-fluid {
+    height: 100%;
+  }
+  
+  .img-fluid {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .rounded-start {
+    border-radius: 0.25rem;
+  }
+  

@@ -1,0 +1,44 @@
+<div class="d-flex justify-content-end align-items-center min-vh-100 gradient-bg">
+    <div class="bg-white p-4 rounded shadow-sm w-100" style="max-width: 450px; max-height: 600px;">
+      <h2 class="h4 font-weight-bold text-dark">Log In</h2>
+      <p class="mt-2 text-muted">
+        Don't have an account? <a routerLink="/signup" class="text-primary">Register</a>
+      </p>
+  
+      <form (ngSubmit)="onSubmit(loginForm)" #loginForm="ngForm" class="mt-4">
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" [(ngModel)]="enteredemail" name="email" required
+                 class="form-control" placeholder="Enter your Email" #email="ngModel" autocomplete="off">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)" class="text-danger">
+            <div *ngIf="email.errors?.['required']">Email is required.</div>
+            <div *ngIf="email.errors?.['email']">Enter a valid email address.</div>
+          </div>
+        </div>
+  
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" [(ngModel)]="enteredpassword" name="password" required
+                 class="form-control" placeholder="Enter your Password" #password="ngModel" autocomplete="off">
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="text-danger">
+            <div *ngIf="password.errors?.['required']">Password is required.</div>
+          </div>
+        </div>
+  
+        <div class="d-flex align-items-center mt-3">
+          <input id="rememberMe" name="rememberMe" type="checkbox" [(ngModel)]="rememberMe"
+                 class="form-check-input me-2">
+          <label for="rememberMe" class="form-check-label">
+            Remember me
+          </label>
+        </div>
+  
+        <button type="submit" [disabled]="loginForm.invalid" class="btn btn-primary w-100 mt-3">
+          Log In
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <router-outlet></router-outlet>
+  

@@ -1,0 +1,90 @@
+
+    <!-- <div>
+<app-navbar></app-navbar>
+</div> -->
+<div class="container-fluid p-0 d-flex">
+    <div>
+        <app-navbar></app-navbar>
+    </div>
+    
+    <!-- Sidebar -->
+    <div class="sidebar bg-light">
+      <div class="d-flex justify-content-between align-items-center p-3">
+        <h5 class="m-0">Messages</h5>
+        <button class="btn btn-primary btn-sm" (click)="newGroup()">+</button>
+        <button routerLink="/parking">Parking</button>
+      </div>
+      <div class="search-bar p-3">
+        <input type="text" class="form-control" placeholder="Search messages" [(ngModel)]="searchTerm">
+      </div>
+      <div class="chat-list">
+        <ul class="list-unstyled">
+            <li *ngFor="let chat of filteredChats" class="chat-item p-3"
+            [ngClass]="{'active-chat': chat.name === selectedChat}"
+            (click)="selectChat(chat.name)">
+          <!-- <li *ngFor="let chat of chats" class="chat-item p-3"
+           [ngClass]="{'active-chat': chat.name === selectedChat}"
+           (click)="selectChat(chat.name)"> -->
+            <div class="d-flex justify-content-between align-items-center">
+              <div>
+                <strong>{{ chat.name }}</strong>
+                <p class="m-0">{{ chat.lastMessage }}</p>
+              </div>
+              <small>{{ chat.time }}</small>
+            </div>
+            <div class="tag-list mt-2">
+              <span *ngFor="let tag of chat.tags" class="badge bg-warning text-dark me-1">{{ tag }}</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  
+    <!-- Main Chat Area -->
+    <div class="main-chat flex-grow-1">
+      <div class="chat-header bg-white p-3 d-flex align-items-center border-bottom">
+        <h5 class="m-0">{{ selectedChat }}</h5>
+      </div>
+      <div class="chat-body p-3">
+        <div *ngFor="let message of messages" class="message" [ngClass]="message.type">
+          <p class="m-0 p-2 rounded">
+            {{ message.text }}
+          </p>
+        </div>
+      </div>
+
+      <div class="chat-footer p-3">
+        <div class="input-group">
+          <input type="text" class="form-control" placeholder="Type a message" [(ngModel)]="newMessage">
+          <button class="btn btn-primary" type="button" (click)="sendMessage()">Send
+            
+          </button>
+        </div>
+      </div>
+    </div>
+  <!-- </div> -->
+
+   <!-- New Chat Modal -->
+   <div class="modal" [ngClass]="{'d-block': showModal, 'd-none': !showModal}" style="display: block;">
+     <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New Chat</h5>
+          <button type="button" class="btn-close" (click)="closeNewChatModal()"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <label for="chatName" class="form-label">Chat Name</label>
+            <input type="text" id="chatName" class="form-control" [(ngModel)]="newChatName" placeholder="Enter chat name">
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeNewChatModal()">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addNewChat()">Add Chat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>

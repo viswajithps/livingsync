@@ -1,0 +1,74 @@
+<nav id="sidebar" class="bg-dark text-light p-3">
+    <div class="notification text-light">
+        <!-- Notification Icon -->
+        <i class="bi bi-bell"></i>
+        <span class="notification-text">Notification</span> <!-- Notification badge -->
+      </div>
+      <div class="d-flex flex-column align-items-center justify-content-center h-100">
+      <div class="notification text-light" [ngClass]="{'active': isActive('/home')}" [routerLink]="['/home']" style="cursor: pointer;">
+        <!-- Notification Icon -->
+        <i class="bi bi-house-door"></i>
+        <span class="notification-text">Home</span> <!-- Notification badge -->
+      </div>
+
+      <div class="notification text-light" [routerLink]="['/']" style="cursor: pointer;">
+        <!-- Notification Icon -->
+        <i class="bi bi-calendar-date"></i>
+        <span class="notification-text">Calendar</span> <!-- Notification badge -->
+      </div>
+
+      <div class="notification text-light"  [ngClass]="{'active': isActive('/chat')}" [routerLink]="['/chat']" style="cursor: pointer;">
+        <!-- Notification Icon -->
+        <i class="bi bi-chat-right"></i>
+        <span class="notification-text">Chat</span> <!-- Notification badge -->
+      </div>
+
+
+      <div class="notification text-light" [ngClass]="{'active': isActive('/parking')}" [routerLink]="['/parking']" style="cursor: pointer;">
+        <!-- Notification Icon -->
+        <i class="bi bi-car-front"></i>
+        <span class="notification-text">Parking</span> <!-- Notification badge -->
+      </div>
+
+      
+      <div class="notification text-light" [ngClass]="{'active': isActive('/payment')}" [routerLink]="['/payment']" style="cursor: pointer;" >
+        <!-- Notification Icon -->
+        <i class="bi bi-credit-card" ></i>
+        <span class="notification-text">Payments</span> <!-- Notification badge -->
+      </div>
+
+
+    <!-- <div class="d-flex flex-column align-items-center justify-content-center h-100">
+      <ul class="nav flex-column align-items-center justify-content-center">
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">
+           
+            <i class="bi bi-house-door"></i>
+            <span class="nav-text">Home</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">
+           
+            <i class="bi bi-person "></i>
+            <span class="nav-text">About</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">
+           
+            <i class="bi bi-gear"></i>
+            <span class="nav-text">Services</span>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-light" href="#">
+           
+            <i class="bi bi-envelope"></i>
+            <span class="nav-text">Contact</span>
+          </a>
+        </li>
+      </ul>
+    </div> -->
+</div>
+  </nav>

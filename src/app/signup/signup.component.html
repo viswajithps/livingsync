@@ -1,0 +1,93 @@
+<div class="d-flex justify-content-end align-items-center min-vh-100 gradient-bg">
+    <div class="bg-white p-4 rounded shadow-sm w-100" style="max-width: 600px; max-height: 550px;">
+      <h2 class="h4 font-weight-bold text-dark">Register</h2>
+      <p class="mt-2 text-muted">
+        Already have an account? <a routerLink="/login" class="text-primary">Log in</a>
+      </p>
+  
+      <form (ngSubmit)="onSubmit()" class="mt-4">
+        <div class="form-group">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" id="email" [(ngModel)]="email" name="email" required
+                 class="form-control" placeholder="Enter your Email">
+        </div>
+  
+        <div class="form-group">
+          <label for="username" class="form-label">Full Name</label>
+          <input type="text" id="username" [(ngModel)]="username" name="username" required
+                 class="form-control" placeholder="Enter your Full Name">
+        </div>
+  
+        <div class="form-group">
+          <label for="mobile" class="form-label">Mobile Number</label>
+          <input type="tel" id="mobile" [(ngModel)]="mobile" name="mobile" required pattern="[0-9]{10}"
+                 class="form-control" placeholder="Enter your Mobile number">
+        </div>
+  
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <input type="password" id="password" [(ngModel)]="password" name="password" required (input)="validatePassword()"
+                 class="form-control" placeholder="Enter your Password">
+                 
+                        
+          
+          <!-- Password Validation Feedback -->
+          <div class="d-flex flex-wrap mt-2 small">
+            <div class="d-flex align-items-center me-3">
+              <div [ngClass]="{'bg-success': passwordValidations.minLength, 'bg-danger': !passwordValidations.minLength}"
+                   class="rounded-circle me-1" style="width: 12px; height: 12px;"></div>
+              <span [ngClass]="{'text-success': passwordValidations.minLength, 'text-danger': !passwordValidations.minLength}">
+                Use 8 or more characters.
+              </span>
+            </div>
+            <div class="d-flex align-items-center me-3">
+              <div [ngClass]="{'bg-success': passwordValidations.uppercase, 'bg-danger': !passwordValidations.uppercase}"
+                   class="rounded-circle me-1" style="width: 12px; height: 12px;"></div>
+              <span [ngClass]="{'text-success': passwordValidations.uppercase, 'text-danger': !passwordValidations.uppercase}">
+                At least 1 uppercase character.
+              </span>
+            </div>
+            <div class="d-flex align-items-center me-3">
+              <div [ngClass]="{'bg-success': passwordValidations.lowercase, 'bg-danger': !passwordValidations.lowercase}"
+                   class="rounded-circle me-1" style="width: 12px; height: 12px;"></div>
+              <span [ngClass]="{'text-success': passwordValidations.lowercase, 'text-danger': !passwordValidations.lowercase}">
+                At least 1 lowercase character.
+              </span>
+            </div>
+            <div class="d-flex align-items-center me-3">
+              <div [ngClass]="{'bg-success': passwordValidations.number, 'bg-danger': !passwordValidations.number}"
+                   class="rounded-circle me-1" style="width: 12px; height: 12px;"></div>
+              <span [ngClass]="{'text-success': passwordValidations.number, 'text-danger': !passwordValidations.number}">
+                At least 1 number.
+              </span>
+            </div>
+            <div class="d-flex align-items-center">
+              <div [ngClass]="{'bg-success': passwordValidations.specialChar, 'bg-danger': !passwordValidations.specialChar}"
+                   class="rounded-circle me-1" style="width: 12px; height: 12px;"></div>
+              <span [ngClass]="{'text-success': passwordValidations.specialChar, 'text-danger': !passwordValidations.specialChar}">
+                At least 1 special character.
+              </span>
+            </div>
+          </div>
+        </div>
+  
+        <!-- <div class="form-check">
+          <input id="emailOptIn" name="emailOptIn" type="checkbox" [(ngModel)]="emailOptIn"
+                 class="form-check-input">
+          <label for="emailOptIn" class="form-check-label">
+            I want to receive emails about the product, feature updates, events, and marketing promotions.
+          </label>
+        </div> -->
+  
+        <!-- <div class="text-muted mt-3">
+          By creating an account, you agree to the <a href="#" class="text-primary">Terms of Use</a> and <a href="#" class="text-primary">Privacy Policy</a>.
+        </div> -->
+  
+        <button type="submit" [disabled]="!isPasswordValid()"
+                class="btn btn-primary w-100 mt-3">
+          Create an account
+        </button>
+      </form>
+    </div>
+  </div>
+<router-outlet></router-outlet>  

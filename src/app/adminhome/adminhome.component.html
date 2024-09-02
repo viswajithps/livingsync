@@ -1,0 +1,62 @@
+<div class="admin-container">
+    <h1>Admin Dashboard</h1>
+    
+    <div class="navigation-buttons">
+      <button (click)="displayPaymentForm()" class="btn btn-primary">Make Payment Request</button>
+      <button (click)="displayEventForm()" class="btn btn-secondary">Post Event</button>
+    </div>
+  
+    <!-- Payment Request Form -->
+    <div *ngIf="showPaymentForm" class="form-section">
+      <h2>Make a Payment Request</h2>
+      <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+        <div class="form-group">
+          <label for="amount">Amount</label>
+          <input id="amount" type="number" formControlName="amount" class="form-control" placeholder="Enter amount" />
+          <div *ngIf="paymentForm.get('amount')?.invalid && paymentForm.get('amount')?.touched" class="error-message">
+            Amount is required and must be a positive number.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea id="description" formControlName="description" class="form-control" rows="4" placeholder="Enter description"></textarea>
+          <div *ngIf="paymentForm.get('description')?.invalid && paymentForm.get('description')?.touched" class="error-message">
+            Description is required.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit Request</button>
+        <button type="button" class="btn btn-secondary" (click)="resetForms()">Cancel</button>
+      </form>
+    </div>
+  
+    <!-- Event Post Form -->
+    <div *ngIf="showEventForm" class="form-section">
+      <h2>Post an Event</h2>
+      <form [formGroup]="eventForm" (ngSubmit)="submitEvent()">
+        <div class="form-group">
+          <label for="eventName">Event Name</label>
+          <input id="eventName" type="text" formControlName="eventName" class="form-control" placeholder="Enter event name" />
+          <div *ngIf="eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched" class="error-message">
+            Event name is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="eventDate">Event Date</label>
+          <input id="eventDate" type="date" formControlName="eventDate" class="form-control" />
+          <div *ngIf="eventForm.get('eventDate')?.invalid && eventForm.get('eventDate')?.touched" class="error-message">
+            Event date is required.
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="eventDescription">Event Description</label>
+          <textarea id="eventDescription" formControlName="eventDescription" class="form-control" rows="4" placeholder="Enter event description"></textarea>
+          <div *ngIf="eventForm.get('eventDescription')?.invalid && eventForm.get('eventDescription')?.touched" class="error-message">
+            Event description is required.
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Post Event</button>
+        <button type="button" class="btn btn-secondary" (click)="resetForms()">Cancel</button>
+      </form>
+    </div>
+  </div>
+  
