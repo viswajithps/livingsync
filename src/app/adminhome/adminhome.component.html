@@ -1,15 +1,27 @@
 <div class="admin-container">
     <h1>Admin Dashboard</h1>
     
-    <div class="navigation-buttons">
-      <button (click)="displayPaymentForm()" class="btn btn-primary">Make Payment Request</button>
-      <button (click)="displayEventForm()" class="btn btn-secondary">Post Event</button>
+    <div class="navigation-buttons ">
+      <button (click)="displayPaymentForm()" class="btn btn-primary m-3">Make Payment Request</button>
+      <button (click)="displayEventForm()" class="btn btn-secondary m-3">Post Event</button>
+      <button (click)="displayEventList()" class="btn btn-secondary m-3">View Event</button>
     </div>
   
     <!-- Payment Request Form -->
     <div *ngIf="showPaymentForm" class="form-section">
       <h2>Make a Payment Request</h2>
       <form [formGroup]="paymentForm" (ngSubmit)="submitPayment()">
+        <div class="form-group">
+          <label for="user">User</label>
+          <div class="custom-dropdown">
+            <select id="user" formControlName="user" class="form-control">
+              <option *ngFor="let user of users" [ngValue]="user">{{ user.name }} ({{ user.id }})</option>
+            </select>
+          </div>
+          <div *ngIf="paymentForm.get('user')?.invalid && paymentForm.get('user')?.touched" class="error-message">
+            User is required.
+          </div>
+        </div>
         <div class="form-group">
           <label for="amount">Amount</label>
           <input id="amount" type="number" formControlName="amount" class="form-control" placeholder="Enter amount" />
@@ -28,6 +40,8 @@
         <button type="button" class="btn btn-secondary" (click)="resetForms()">Cancel</button>
       </form>
     </div>
+    
+    
   
     <!-- Event Post Form -->
     <div *ngIf="showEventForm" class="form-section">
@@ -35,21 +49,21 @@
       <form [formGroup]="eventForm" (ngSubmit)="submitEvent()">
         <div class="form-group">
           <label for="eventName">Event Name</label>
-          <input id="eventName" type="text" formControlName="eventName" class="form-control" placeholder="Enter event name" />
+          <input id="eventName" type="text" formControlName="eventName" class="form-control" placeholder="Enter event name " [(ngModel)]="event.name" />
           <div *ngIf="eventForm.get('eventName')?.invalid && eventForm.get('eventName')?.touched" class="error-message">
             Event name is required.
           </div>
         </div>
         <div class="form-group">
           <label for="eventDate">Event Date</label>
-          <input id="eventDate" type="date" formControlName="eventDate" class="form-control" />
+          <input id="eventDate" type="date" formControlName="eventDate" class="form-control" [(ngModel)]="event.date" />
           <div *ngIf="eventForm.get('eventDate')?.invalid && eventForm.get('eventDate')?.touched" class="error-message">
             Event date is required.
           </div>
         </div>
         <div class="form-group">
           <label for="eventDescription">Event Description</label>
-          <textarea id="eventDescription" formControlName="eventDescription" class="form-control" rows="4" placeholder="Enter event description"></textarea>
+          <textarea id="eventDescription" formControlName="eventDescription" class="form-control" rows="4" placeholder="Enter event description" [(ngModel)]="event.description"></textarea>
           <div *ngIf="eventForm.get('eventDescription')?.invalid && eventForm.get('eventDescription')?.touched" class="error-message">
             Event description is required.
           </div>
@@ -58,5 +72,35 @@
         <button type="button" class="btn btn-secondary" (click)="resetForms()">Cancel</button>
       </form>
     </div>
+
+    <div *ngIf="showEventList" class="event-list-section">
+      <h2>Event List</h2>
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Event Name</th>
+            <th>Event Date</th>
+            <th>Event Description</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let event of events">
+            <td>{{ event.name }}</td>
+            <td>{{ event.date | date }}</td>
+            <td>{{ event.description }}</td>
+            <td>
+              <button class="btn btn-danger" (click)="deleteEvent(event.id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+
   </div>
+
+  <!-- <div>
+    <app-calendar [events]="events"></app-calendar>
+  </div> -->
   

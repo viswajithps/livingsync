@@ -1,0 +1,39 @@
+<div class="d-flex">
+<div>
+    <app-navbar></app-navbar>
+</div>
+<div class="photo-display-container">
+    <!-- Background Image Container -->
+    <div class="background-image" [ngStyle]="{'background-image': 'url(' + photos[currentIndex].url + ')'}"></div>
+  
+    <!-- Slideshow Container -->
+    <div class="slideshow-wrapper">
+      <div class="slideshow-container">
+        <ng-container *ngIf="photos.length > 0; else noPhotos">
+          <div class="photo-card">
+            <img [src]="photos[currentIndex].url" [alt]="photos[currentIndex].caption" class="photo-image" />
+            <div class="photo-caption">{{ photos[currentIndex].caption }}</div>
+          </div>
+          <button class="nav-button prev-button" (click)="prevPhoto()">&#10094;</button>
+          <button class="nav-button next-button" (click)="nextPhoto()">&#10095;</button>
+        </ng-container>
+        <ng-template #noPhotos>
+          <p>No photos available</p>
+        </ng-template>
+      </div>
+    </div>
+  
+    <!-- Thumbnail Grid Container -->
+    <div class="thumbnail-grid">
+      <img *ngFor="let photo of photos; let i = index"
+           [src]="photo.url"
+           [alt]="photo.caption"
+           class="thumbnail-image"
+           (click)="selectPhoto(i)" />
+    </div>
+  </div>
+  
+  
+  
+</div>
+  

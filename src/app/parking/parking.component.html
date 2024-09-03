@@ -1,13 +1,15 @@
 <div class="d-flex">
-<div>
-  <app-navbar></app-navbar>
-</div>
-  
-<div class="container mt-5 ">
- 
- 
-  
-    <div class="d-flex justify-content-between align-items-center mb-4">
+  <div>
+    <app-navbar></app-navbar>
+  </div>
+
+  <div class="container mt-3">
+    <div class="date-selector mb-1">
+      <label for="datePicker" class="form-label">Select Date</label>
+      <input type="date" id="datePicker" class="form-control" [(ngModel)]="selectedDate" (change)="onDateChange($event)">
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-2">
       <h3>{{ title }}</h3>
       <div class="status-badges">
         <div class="badge-status">
@@ -20,46 +22,42 @@
         </div>
       </div>
     </div>
-  
+
     <div class="slots-grid">
-      <div *ngFor="let slot of slots" class="slot"
-           [ngClass]="{'reserved': slot.reserved, 'booked': slot.booked, 'selected': slot === selectedSlot}"
+      <div *ngFor="let slot of filteredSlots" class="slot"
+           [ngClass]="{'booked': slot.booked, 'selected': slot === selectedSlot}"
            (click)="selectSlot(slot)">
         SLOT {{ slot.id }}
         <!-- <div *ngIf="slot.booked">Booked by: {{ slot.guestName }}</div> -->
       </div>
     </div>
-  
+
     <div class="mt-4 text-center">
       <button class="btn btn-primary" (click)="openBookingModal()" [disabled]="!selectedSlot || selectedSlot.booked">
         Book Selected Slot
       </button>
     </div>
-  
+
     <!-- Modal for entering guest name -->
     <div class="modal" [ngClass]="{'d-block': showBookingModal, 'd-none': !showBookingModal}" style="display: block;">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Book Slot</h5>
-              <button type="button" class="btn-close" (click)="closeBookingModal()"></button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Book Slot</h5>
+            <button type="button" class="btn-close" (click)="closeBookingModal()"></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="guestName" class="form-label">Guest Name</label>
+              <input type="text" id="guestName" class="form-control" [(ngModel)]="guestName" placeholder="Enter guest name">
             </div>
-            <div class="modal-body">
-              <div class="mb-3">
-                <label for="guestName" class="form-label">Guest Name</label>
-                <input type="text" id="guestName" class="form-control" [(ngModel)]="guestName" placeholder="Enter guest name">
-              </div>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" (click)="closeBookingModal()">Close</button>
-              <button type="button" class="btn btn-primary" (click)="bookSlot()">Book Slot</button>
-            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="closeBookingModal()">Close</button>
+            <button type="button" class="btn btn-primary" (click)="bookSlot()">Book Slot</button>
           </div>
         </div>
       </div>
-      
-      
+    </div>
   </div>
 </div>
-
-  

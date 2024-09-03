@@ -9,6 +9,8 @@ import { ParkingComponent } from './parking/parking.component';
 import { PaymentComponent } from './payment/payment.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AdminhomeComponent } from './adminhome/adminhome.component';
+import { CalendarComponent } from './calendar/calendar.component';
+import { GalleryComponent } from './gallery/gallery.component';
 
 
 
@@ -22,7 +24,8 @@ export const routes: Routes = [
     {path:"payment",component:PaymentComponent},
     {path:"navbar",component:NavbarComponent},
     {path:"admin",component:AdminhomeComponent},
-    
+    {path:"calendar",component:CalendarComponent},
+    {path:"gallery",component:GalleryComponent}
 ];
 
 // @NgModule({

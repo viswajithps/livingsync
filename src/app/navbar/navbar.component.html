@@ -11,16 +11,24 @@
         <span class="notification-text">Home</span> <!-- Notification badge -->
       </div>
 
-      <div class="notification text-light" [routerLink]="['/']" style="cursor: pointer;">
+      <div class="notification text-light"  [ngClass]="{'active': isActive('/chat')}" [routerLink]="['/chat']" style="cursor: pointer;">
+        <!-- Notification Icon -->
+        <i class="bi bi-chat-right"></i>
+        <span class="notification-text">Chat</span> <!-- Notification badge -->
+      </div>
+
+      <div class="notification text-light" [ngClass]="{'active': isActive('/calendar')}" [routerLink]="['/calendar']" style="cursor: pointer;">
         <!-- Notification Icon -->
         <i class="bi bi-calendar-date"></i>
         <span class="notification-text">Calendar</span> <!-- Notification badge -->
       </div>
 
-      <div class="notification text-light"  [ngClass]="{'active': isActive('/chat')}" [routerLink]="['/chat']" style="cursor: pointer;">
+      
+
+      <div class="notification text-light"  [ngClass]="{'active': isActive('/gallery')}" [routerLink]="['/gallery']" style="cursor: pointer;">
         <!-- Notification Icon -->
-        <i class="bi bi-chat-right"></i>
-        <span class="notification-text">Chat</span> <!-- Notification badge -->
+        <i class="bi bi-images"></i>
+        <span class="notification-text">Images</span> <!-- Notification badge -->
       </div>
 
 

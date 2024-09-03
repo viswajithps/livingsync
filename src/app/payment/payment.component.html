@@ -4,38 +4,79 @@
     <app-navbar></app-navbar>
   </div>
 
-<div class="container " >
+  <div class="container">
     <div class="full">
-        <div class=" top d-flex justify-content-between align-items-center mb-4">
-            <h3>{{ title }}</h3>
-            <div>
-                <h4>{{ totalAmount | currency:'INR' }}</h4>
-                <button class="btn btn-primary">Pay Now</button>
-            </div>
+      <div class="top d-flex justify-content-between align-items-center mb-4">
+        <h3>Payments</h3>
+        <div>
+          <!-- <h4>{{ totalAmount | currency: 'INR' }}</h4> -->
+          <button class="btn btn-primary" (click)="viewPaymentHistory()">View Payment History</button>
         </div>
-
-        <table class=" table table-bordered ">
-            <thead>
-                <tr>
+      </div>
+  
+      <!-- Section for Pending Payments -->
+      <div *ngIf="pendingPayments.length > 0">
+        <h4>Pending Payments</h4>
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">Order ID</th>
+              <th scope="col">Date</th>
+              <th scope="col">Amount</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let payment of pendingPayments">
+              <td>{{ payment.orderId }}</td>
+              <td>{{ payment.date }}</td>
+              <td>{{ payment.amount | currency: 'INR' }}</td>
+              <td>
+                <button class="btn btn-warning" (click)="payNow(payment, $event)">Pay Now</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <!-- Modal for payment history -->
+      <div class="modal" [ngClass]="{'d-block': showPaymentModal, 'd-none': !showPaymentModal}" style="display: block;">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Payment History</h5>
+              <button type="button" class="btn-close" (click)="closePaymentModal()"></button>
+            </div>
+            <div class="modal-body">
+              <table class="table table-bordered">
+                <thead>
+                  <tr>
                     <th scope="col">Order ID</th>
                     <th scope="col">Date</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Status</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let payment of payments">
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let payment of paymentHistory">
                     <td>{{ payment.orderId }}</td>
                     <td>{{ payment.date }}</td>
-                    <td>{{ payment.amount | currency:'INR' }}</td>
+                    <td>{{ payment.amount | currency: 'INR' }}</td>
                     <td [ngClass]="getStatusClass(payment.status)">{{ payment.status }}</td>
-                </tr>
-            </tbody>
-        </table>
-
-        <!-- <div class="pagination-container">
-      <label>10</label> per page
-    </div> -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" (click)="closePaymentModal()">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  
+  
+  
+  
 </div>

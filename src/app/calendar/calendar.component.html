@@ -1,1 +1,48 @@
-<p>calendar works!</p>
+ <div class="d-flex ">
+ <div>
+    <app-navbar></app-navbar>
+ </div>
+ 
+<div class="calendar-container">
+    <h3 class="text-center">Events</h3>
+    <div class="calendar-header">
+      <button (click)="prevMonth()">&lt;</button>
+      <h2>{{ currentDate | date:'MMMM yyyy' }}</h2>
+      <button (click)="nextMonth()">&gt;</button>
+    </div>
+    <div class="calendar-grid">
+      <div class="weekday">Sun</div>
+      <div class="weekday">Mon</div>
+      <div class="weekday">Tue</div>
+      <div class="weekday">Wed</div>
+      <div class="weekday">Thu</div>
+      <div class="weekday">Fri</div>
+      <div class="weekday">Sat</div>
+      <ng-container *ngFor="let week of calendar">
+        <ng-container *ngFor="let day of week">
+          <div class="day" 
+               [class.today]="isToday(day)"
+               [class.selected]="isSelected(day)"
+               [class.has-tasks]="hasTasks(day)"
+               (click)="selectDate(day)">
+            {{ day?.getDate() }}
+          </div>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div class="tasks-container" *ngIf="selectedDate">
+      <h3>Events for {{ selectedDate | date:'mediumDate' }}</h3>
+      <ng-container *ngIf="selectedTasks.length > 0; else noEvents">
+      <ul class="task-list">
+        <li *ngFor="let event of selectedTasks" class="task-item">
+          {{ event.name }} - {{ event.date }} - {{ event.description }}
+        </li>
+      </ul>
+     </ng-container>
+        <ng-template #noEvents>
+            <p>No Events added</p>
+      </ng-template>
+    </div>
+  </div>
+
+</div>
